@@ -24,3 +24,6 @@ const str = `<ul>
 // Obtener el total de segundos de los videos de tipo Redux
 // Tip: Obtener un array de objetos, donde cada objeto sea un video
 // {min:5, seg: 59, tipo: 'Redux Video'}
+
+//console.log(str.split('"'));
+//console.log("1,Pablo,Fernandez".split(","));
