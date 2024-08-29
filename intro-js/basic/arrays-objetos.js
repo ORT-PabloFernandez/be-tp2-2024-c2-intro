@@ -45,12 +45,27 @@ console.log(
   }))
 );
 
-// TODO: Retornar ambas cosas, filtrado y nombre en mayusculas
+// TODO: Retornar ambas cosas, filtrado y nombre en mayusculas. utilizar el filter
 
 // TODO Buscar inventor Kepler y retornar el objeto (find)
+console.log(
+  inventors
+    .filter((inventor) => inventor.year > 1800)
+    .find((inventor) => inventor.last === "Kepler")
+);
 
 // TODO Retornar false o true si en el array hay algun inventor que nacio en 1858
 
 // TODO Ordenar los inventores por fecha de nacimiento (sort)
+// printInventors(
+//   inventors.sort((a, b) => {
+//     if (a.year > b.year) {
+//       return 1;
+//     } else {
+//       return -1;
+//     }
+//   })
+// );
+printInventors(inventors.sort((a, b) => a.year - b.year));
 
 // TODO Ordenar los inventores por orden alfabetico por Apellido (sort)
