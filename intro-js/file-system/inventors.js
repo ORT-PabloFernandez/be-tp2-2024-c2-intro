@@ -6,10 +6,19 @@ function getInventors() {
   return JSON.parse(inventors);
 }
 
-function addInventors(inventor) {
+function addInventor(inventor) {
   const inventors = getInventors();
   inventors.push(inventor);
-  printInventors(inventors);
+  fs.writeFileSync("inventors.json", JSON.stringify(inventors, null, " "));
+}
+
+function deleteInventor(id) {
+  let inventors = getInventors();
+  inventors.splice(
+    inventors.findIndex((inventor) => inventor._id == id),
+    1
+  );
+  fs.writeFileSync("inventors.json", JSON.stringify(inventors, null, " "));
 }
 
 function printInventors(inventors) {
@@ -31,6 +40,11 @@ function printInventors(inventors) {
   );
 }
 
-addInventors({ first: "Pablo", last: "Fernandez", year: 1974 });
+// TODO: Hacer el update
+// TODO: Hacer el getInventor(id)
+
+// CRUD de inventores
 
 // printInventors(getInventors());
+
+export { addInventor, getInventors, deleteInventor };
