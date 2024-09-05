@@ -27,3 +27,30 @@ const str = `<ul>
 
 //console.log(str.split('"'));
 //console.log("1,Pablo,Fernandez".split(","));
+
+function getVideos(str) {
+  return str
+    .replace("</ul>", "")
+    .replace("<ul>", "")
+    .split("</li>")
+    .slice(0, -1)
+    .map((video) => ({
+      min: parseInt(video.split('"')[1].split(":")[0]),
+      seg: parseInt(video.split('"')[1].split(":")[1]),
+      tipo: video.split(">")[1],
+    }));
+}
+
+function getTotalSegundos(videos, tipo) {
+  //let totalsegundos = 0;
+  return (
+    videos
+      .filter((video) => video.tipo == tipo)
+      // .forEach((video) => {
+      //   totalsegundos += video.min * 60 + video.seg;
+      // });
+      .reduce((total, video) => total + video.min * 60 + video.seg, 0)
+  );
+}
+
+console.log(getTotalSegundos(getVideos(str), "Redux Video"));
