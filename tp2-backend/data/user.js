@@ -2,11 +2,6 @@ import getConnection from "./connection.js";
 import bcryptjs from "bcryptjs";
 
 export async function addUser(user) {
-  // {
-  // username: "Pablo Fernandez"
-  // email: "pablo.hinojosa@ort.edu.ar"
-  // password: "abc123"
-  // }
   user.password = await bcryptjs.hash(user.password, 10);
   const clientMongo = await getConnection();
 
