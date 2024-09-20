@@ -19,10 +19,12 @@ router.post("/", async (req, res) => {
   res.json(result);
 });
 
+// TODO: llamar a la funcion de la capa de datos
 router.put("/:id", (req, res) => {
   res.send("endpoint put inventor:" + JSON.stringify(req.body));
 });
 
+// TODO: llamar a la funcion de la capa de datos
 router.delete("/:id", (req, res) => {
   res.send("endpoint delete inventor:" + req.params.id);
 });

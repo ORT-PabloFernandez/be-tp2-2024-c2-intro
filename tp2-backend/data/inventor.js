@@ -33,3 +33,33 @@ export async function addInventor(inventor) {
     .insertOne(inventor);
   return result;
 }
+
+// TODO:; Probar con los endpoints
+export async function updateInventor(inventor) {
+  const clientmongo = await getConnection();
+  const query = { _id: new ObjectId(inventor._id) };
+  const newValues = {
+    $set: {
+      first: inventor.first,
+      last: inventor.last,
+      year: inventor.year,
+    },
+  };
+
+  const result = await clientmongo
+    .db("sample_tp2")
+    .collection("inventors")
+    .updateOne(query, newValues);
+
+  return result;
+}
+// TODO:; Probar con los endpoints
+export async function deleteInventor(id) {
+  const clientmongo = await getConnection();
+
+  const result = await clientmongo
+    .db("sample_tp2")
+    .collection("inventors")
+    .deleteOne({ _id: new ObjectId(id) });
+  return result;
+}
