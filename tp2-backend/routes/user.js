@@ -9,8 +9,13 @@ router.post("/", async (req, res) => {
 });
 router.post("/login", async (req, res) => {
   try {
+    console.log("email", req.body.email);
+    console.log("email", req.body.password);
+
     const user = await findByCredentials(req.body.email, req.body.password);
+    console.log(user);
     const token = generateAuthToken(user);
+    console.log(token);
     res.send({ user, token });
   } catch (error) {
     res.status(401).send(error.message);

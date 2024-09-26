@@ -15,10 +15,12 @@ export async function addUser(user) {
 
 export async function findByCredentials(email, password) {
   const clientMongo = await getConnection();
-  const user = clientMongo
+  const user = await clientMongo
     .db("sample_tp2")
     .collection("users")
     .findOne({ email: email });
+
+  console.log("Usuario:" + user);
 
   if (!user) {
     // para no revelar detalles de usuario
