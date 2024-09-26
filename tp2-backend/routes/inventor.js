@@ -1,9 +1,10 @@
 import express from "express";
 import { addInventor, getInventor, getInventors } from "../data/inventor.js";
+import { auth } from "../middleware/auth.js";
 
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get("/", auth, async (req, res) => {
   const inventors = await getInventors();
   res.json(inventors);
 });

@@ -1,5 +1,6 @@
 import getConnection from "./connection.js";
 import bcryptjs from "bcryptjs";
+import jwt from "jsonwebtoken";
 
 export async function addUser(user) {
   user.password = await bcryptjs.hash(user.password, 10);
@@ -30,4 +31,14 @@ export async function findByCredentials(email, password) {
   }
 
   return user;
+}
+
+export function generateAuthToken(user) {
+  const token = jwt.sign(
+    { _id: user._id, email: user.email },
+    process.env.SECRET,
+    { expiresIn: "1h" }
+  );
+
+  return token;
 }
